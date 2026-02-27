@@ -28,9 +28,11 @@ def predict():
 
     network_speed = data.get('networkSpeed', 1000)
     battery = data.get('battery', 100)
-    battery = 30
+    network_speed = 5  # Hack: simulate terrible 3G
+    battery = 9         # Hack: simulate dying battery
+    cpu_usage = 50       # Hack: simulate overheating CPU
+
     cpu_usage = data.get('cpuUsage', 0)
-    cpu_usage = 80
     content_type = data.get('contentType', 'video')
 
     # Basic threshold mappings for fallback or when the generic predictor is used
@@ -38,12 +40,13 @@ def predict():
     resolution = 1080
 
     try:
-        # If the model is a scikit-learn model, predict ideal load time logic
-        if hasattr(model_data, 'predict'):
-            # Model expects [bandwidth_kbps, simulated_size_mb, ping_ms] proxy inputs
+        # Check if it's an XGBoost Booster model
+        if type(model_data).__name__ == 'Booster':
+            import xgboost as xgb
             input_features = np.array([[network_speed, float(battery), float(cpu_usage)]])
-            pred_time = model_data.predict(input_features)[0]
-            print(f"Model predicted constraint value: {pred_time}")
+            dmatrix = xgb.DMatrix(input_features)
+            pred_time = model_data.predict(dmatrix)[0]
+            print(f"XGBoost Model predicted constraint value: {pred_time}")
             
             # Use the prediction to define aggressiveness
             if pred_time > 8.0:
