@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edge AI Demo Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    .media-container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    img {
+      max-width: 1200px;
+      width: 100%;
+      height: auto;
+      transition: width 0.5s ease-in-out;
+      border-radius: 4px;
+      display: block;
+    }
+
+    video {
+      width: 100%;
+      max-width: 800px;
+      background: #000;
+      border-radius: 4px;
+    }
+
+    h1 {
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Heavy Media Page</h1>
+  <p>This page simulates a heavy website with large images and auto-playing videos. The smart browser will optimize it
+    automatically upon load.</p>
+
+  <div class="media-container">
+    <h2>High-Resolution Demo Image</h2>
+    <img src="TestImage.jpg" alt="Target Graphic">
+  </div>
+
+  <div class="media-container">
+    <h2>Demo Video Content</h2>
+    <video controls loop muted autoplay>
+      <source src="Vid1.mp4" type="video/mp4">
+      Your browser does not support HTML video.
+    </video>
+  </div>
+
+  <div class="media-container">
+    <h2>Text Content</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non urna sed lorem facilisis hendrerit. Phasellus
+      mattis lacus at nisl dapibus, in mollis sapien scelerisque. Vestibulum sed ipsum dui. Morbi a urna sed mauris
+      euismod pellentesque.</p>
+  </div>
+</body>
+
+</html>
